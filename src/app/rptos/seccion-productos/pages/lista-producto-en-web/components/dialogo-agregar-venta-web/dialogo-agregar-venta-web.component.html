@@ -1,0 +1,46 @@
+<!-- <h1 mat-dialog-title>Notas de: {{data.nota}}</h1> -->
+<div mat-dialog-content class="flex">
+    <form class="flex flex-column" [formGroup]="notasFormulario" (ngSubmit)="guardarNota()">
+        <mat-form-field>
+            <mat-label>Forma de Pago</mat-label>
+            <mat-select formControlName="pago">
+                <mat-option *ngFor="let pago of formasDePago" [value]="pago.id">
+                    {{pago.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Red Donde se Realizó la Venta</mat-label>
+            <mat-select matNativeControl formControlName="tienda">
+                <mat-option *ngFor="let tienda of tiendasWeb" [value]="tienda.id">
+                    {{tienda.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="m-1">
+            <mat-label>Cliente</mat-label>
+            <input type="text" matInput placeholder="nombre cliente" formControlName="nombre_cliente" required>
+        </mat-form-field>
+
+        <p>Ingrese la cantidad de productos que compro el cliente</p>
+        <ng-container *ngFor="let item of data.items; let i = index">
+            <mat-form-field class="m-1">
+                <mat-label>{{item.nombre}}</mat-label>
+                <input type="number" matInput formControlName="cantidad{{i}}" />
+            </mat-form-field>
+        </ng-container>
+
+        <div class="flex">
+            <button mat-button mat-flat-button color="primary" class="m-3" type="submit">
+                <mat-icon>save</mat-icon>
+                Ingresar
+            </button>
+            <span class="spacer"></span>
+            <button class="m-3 pl-4 pr-4" mat-button mat-flat-button color="warn" mat-dialog-close="true">
+                <mat-icon>close</mat-icon>
+                Cerrar
+            </button>
+        </div>
+    </form>
+</div>

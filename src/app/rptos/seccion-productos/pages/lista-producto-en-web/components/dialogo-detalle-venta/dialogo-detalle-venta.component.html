@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Detalle de venta</h2>
+<div mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="Detalle">
+      <div class="flex flex-column">
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="idproducto">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID del producto </th>
+              <td mat-cell *matCellDef="let row"> {{row.idproducto}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> codigo </th>
+              <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="descripción">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> descripción </th>
+              <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="marca">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> marca </th>
+              <td mat-cell *matCellDef="let row"> {{row.marca}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> cantidad </th>
+              <td mat-cell *matCellDef="let row"> {{row.cantidad}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+        </div>
+
+        <shared-uploads-files class="flex flex-column mat-elevation-z8"
+          (sendImageFiles)="cargarFotoComprobante($event)"></shared-uploads-files>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Imagen Venta" *ngIf="fotosComprobante.length > 0"> 
+      <shared-carousel [images]="fotosComprobante"></shared-carousel> 
+    </mat-tab>
+
+    <mat-tab label="Producto Venta"> 
+      <shared-carousel [images]="fotosProductoVenta"></shared-carousel>
+      <shared-uploads-files class="flex flex-column mat-elevation-z8 mt-2"
+      (sendImageFiles)="cargarFotoProductoVente ($event)" label="Seleccione la(s) foto(s) del producto en venta"></shared-uploads-files>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+  <!-- <div class="flex flex-column">
+      <mat-card *ngFor="let foto of fotosComprobante">
+        <mat-card-content><img mat-card-xl-image (click)="goingToImagen(foto.img)"
+            [src]="'https://coreanosrptos.com/api/foto_comprobante/uploads/' + foto.img"
+            [alt]="foto.img"></mat-card-content>
+      </mat-card>
+    </div> -->

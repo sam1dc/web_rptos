@@ -1,0 +1,23 @@
+  
+  /* Estilos para el botón
+  botonEnviar {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  botonEnviar:hover {
+    background-color: #0056b3;
+  } */
+
+mat-card {
+  margin-top: 10px;
+}
+
+mat-card:first-child{
+  margin-top: 0px;
+}
